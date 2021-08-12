@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "debug_toolbar",
     "el_pagination",
+    "silk",
+    "rest_framework",
     "pg_app",
 ]
 
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "silk.middleware.SilkyMiddleware",
 ]
 
 ROOT_URLCONF = "pg_mat.urls"
