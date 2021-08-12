@@ -40,3 +40,22 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class BlogsWithCategoriesAndTagsCombined(models.Model):
+    id = models.IntegerField(primary_key=True)
+    blog_title = models.CharField(max_length=200, unique=True)
+    blog_content = models.TextField()
+    blog_created_at = models.DateTimeField()
+    blog_is_published = models.BooleanField()
+    category_id = models.IntegerField()
+    category_name = models.CharField()
+    tag_count = models.IntegerField()
+    tags = models.JSONField()
+
+    class Meta:
+        managed = False
+        db_table = "mv_blogs_with_categories_and_tags_combined"
+
+    def __str__(self):
+        return self.blog_title

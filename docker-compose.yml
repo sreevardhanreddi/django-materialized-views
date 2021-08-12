@@ -25,4 +25,4 @@ services:
     env_file:
       - .env
     ports:
-      - 85432:5432
+      - 55432:5432

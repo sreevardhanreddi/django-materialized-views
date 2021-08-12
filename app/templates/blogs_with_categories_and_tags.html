@@ -26,7 +26,11 @@
       </td>
       <td>{{blog.created_at}}</td>
       <td>{{blog.category}}</td>
-      <td>{{blog.tags.all}}</td>
+      <td>
+        {% for tag in blog.tags.all %}
+        <span class="tag">{{tag}}</span>
+        {% endfor %}
+      </td>
     </tr>
     {% endfor %}
   </tbody>
