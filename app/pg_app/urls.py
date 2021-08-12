@@ -1,21 +1,31 @@
 from django.urls import path
 from pg_app.views import (
-    index,
-    blogs,
-    blogs_with_categories,
-    blogs_with_categories_and_tags,
+    IndexPage,
+    BlogsList,
+    BlogsWithCategories,
+    BlogsWithCategoriesAndTags,
+    MaterializedBlogsWithCategoriesAndTags,
 )
 
 
 app_name = "app"
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("blogs/", blogs, name="blogs"),
-    path("blogs-with-categories/", blogs_with_categories, name="blogs_with_categories"),
+    path("", IndexPage.as_view(), name="index"),
+    path("blogs/", BlogsList.as_view(), name="blogs"),
+    path(
+        "blogs-with-categories/",
+        BlogsWithCategories.as_view(),
+        name="blogs_with_categories",
+    ),
     path(
         "blogs-with-categories-and-tags/",
-        blogs_with_categories_and_tags,
+        BlogsWithCategoriesAndTags.as_view(),
         name="blogs_with_categories_and_tags",
+    ),
+    path(
+        "materialized_blogs_with_categories_and_tags",
+        MaterializedBlogsWithCategoriesAndTags.as_view(),
+        name="materialized_blogs_with_categories_and_tags",
     ),
 ]

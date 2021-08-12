@@ -1,23 +1,31 @@
 from django.shortcuts import render, HttpResponse
-from pg_app.models import Blog
-
-# Create your views here.
-def index(request):
-    return render(request, "index.html")
+from pg_app.models import Blog, BlogsWithCategoriesAndTagsCombined
+from django.views.generic import ListView, TemplateView
 
 
-def blogs(request):
-    blogs = Blog.objects.all()
-    return render(request, "blogs.html", {"blogs": blogs})
+class IndexPage(TemplateView):
+    template_name = "index.html"
 
 
-def blogs_with_categories(request):
-    blogs = Blog.objects.select_related("category").all()
-    # blogs = Blog.objects.all()
-    return render(request, "blogs_with_categories.html", {"blogs": blogs})
+class BlogsList(ListView):
+    template_name = "blogs.html"
+    queryset = Blog.objects.all()
+    context_object_name = "blogs"
 
 
-def blogs_with_categories_and_tags(request):
-    blogs = Blog.objects.select_related("category").prefetch_related("tags").all()
-    # blogs = Blog.objects.all()
-    return render(request, "blogs_with_categories_and_tags.html", {"blogs": blogs})
+class BlogsWithCategories(ListView):
+    template_name = "blogs_with_categories.html"
+    queryset = Blog.objects.select_related("category").all()
+    context_object_name = "blogs"
+
+
+class BlogsWithCategoriesAndTags(ListView):
+    template_name = "blogs_with_categories_and_tags.html"
+    queryset = Blog.objects.select_related("category").prefetch_related("tags").all()
+    context_object_name = "blogs"
+
+
+class MaterializedBlogsWithCategoriesAndTags(ListView):
+    template_name = "blogs_from_materialized_views.html"
+    queryset = BlogsWithCategoriesAndTagsCombined.objects.all()
+    context_object_name = "blogs"

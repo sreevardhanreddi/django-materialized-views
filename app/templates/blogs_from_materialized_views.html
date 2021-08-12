@@ -1,0 +1,40 @@
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block container %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Category</th>
+      <th scope="col">Tags</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for blog in blogs %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{blog.blog_title}}</td>
+      <td>
+        <span class="d-inline-block text-truncate" style="max-width: 150px;">
+          {{blog.blog_content}}
+        </span>
+      </td>
+      <td>{{blog.blog_created_at}}</td>
+      <td>{{blog.category_name}}</td>
+      <td>
+        {% for tag in blog.tags %}
+        <span class="tag">{{tag.tag_name}}</span>
+        {% endfor %}
+      </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock container %}

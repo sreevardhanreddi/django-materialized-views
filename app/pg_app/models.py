@@ -49,7 +49,7 @@ class BlogsWithCategoriesAndTagsCombined(models.Model):
     blog_created_at = models.DateTimeField()
     blog_is_published = models.BooleanField()
     category_id = models.IntegerField()
-    category_name = models.CharField()
+    category_name = models.CharField(max_length=200)
     tag_count = models.IntegerField()
     tags = models.JSONField()
 

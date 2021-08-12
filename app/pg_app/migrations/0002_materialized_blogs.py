@@ -10,12 +10,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(
-            migrations.RunSQL(
-                """
-                drop materialized view mv_blogs_with_categories_and_tags_combined;
-                """,
-                """
+        migrations.RunSQL(
+            """
                 create materialized view mv_blogs_with_categories_and_tags_combined
                 as
                     select b.id, 
@@ -26,13 +22,20 @@ class Migration(migrations.Migration):
                         c.id as category_id, 
                         c.name as category_name,
                         count(t.id) as tag_count,
-                        jsonb_agg(jsonb_build_object('tag_id', t.id, 'tag_name', t.name)) as tag
+                        jsonb_agg(jsonb_build_object('tag_id', t.id, 'tag_name', t.name)) as tags
                     from blogs b 
                     left join categories c on b.category_id = c.id
                     left join blogs_tags bt on b.id = bt.blog_id 
                     left join tags t on bt.tags_id = t.id
                     group by b.id, c.id , bt.blog_id order by b.id;
-                """,
-            )
+            """,
+            """
+                drop materialized view if exists mv_blogs_with_categories_and_tags_combined;
+            """,
         )
     ]
+
+
+# RunSQL allows you to write code for migrating forwards and backwards
+# i.e, applying migrations and unapplying them. here
+# the first string in RunSQL is the forward SQL, the second is the reverse SQL

@@ -46,7 +46,7 @@ class Command(BaseCommand):
                 print(e)
 
     def handle(self, *args, **options):
-        self._delete_previous_data()
+        # self._delete_previous_data()
         self.create_tags()
         self.create_categories()
         self.create_blogs()

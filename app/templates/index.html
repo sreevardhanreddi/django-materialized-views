@@ -7,11 +7,12 @@
 <h2>A sample application to demo materialized views and optimize common SQL queries</h2>
 <p></p>
 <ul>
-    <li><a href="{% url 'app:blogs' %}">blogs</a></li>
-    <li><a href="{% url 'app:blogs_with_categories' %}">Blog with categories</a></li>
-    <li><a href="{% url 'app:blogs_with_categories_and_tags' %}">Blog with categories and tags</a></li>
-    <li><a href="{% url 'app:blogs' %}"></a></li>
-    <li><a href="{% url 'app:blogs' %}"></a></li>
+  <li><a href="{% url 'app:blogs' %}">blogs</a></li>
+  <li><a href="{% url 'app:blogs_with_categories' %}">Blog with categories</a></li>
+  <li><a href="{% url 'app:blogs_with_categories_and_tags' %}">Blog with categories and tags</a></li>
+  <li><a href="{% url 'app:materialized_blogs_with_categories_and_tags' %}">Materialized Blogs With Categories And
+      Tags</a></li>
+  <li><a href="{% url 'app:blogs' %}"></a></li>
 </ul>
 
 {% endblock container %}
