@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install psycopg2 and Pillow dependencies
-RUN apt-get update && apt-get install -y apt-transport-https apt-utils netcat
+RUN apt-get update && apt-get install -y apt-transport-https apt-utils netcat cron
 RUN apt-get install libpq-dev gcc python3-dev musl-dev python3-pip -y
 
 # install dependencies
@@ -26,5 +26,7 @@ COPY ./wait_for_db.sh .
 COPY . .
 
 ENTRYPOINT ["/app/wait_for_db.sh"]
+
+RUN python manage.py crontab add
 
 CMD python manage.py runserver 0.0.0.0:8000

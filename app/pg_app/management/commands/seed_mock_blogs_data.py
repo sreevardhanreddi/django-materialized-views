@@ -47,6 +47,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # self._delete_previous_data()
+        print("seeding mock data ...")
         self.create_tags()
         self.create_categories()
         self.create_blogs()

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "el_pagination",
     "silk",
+    "django_crontab",
     "rest_framework",
     "pg_app",
 ]
@@ -133,6 +134,14 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -155,3 +164,13 @@ ALLOWED_HOSTS = ["*"]
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": lambda request: True if DEBUG else False
 }
+
+SILKY_ANALYZE_QUERIES = True
+
+CRONJOBS = [
+    (
+        "* * * * *",
+        "pg_app.jobs.refresh_materialized_blogs_views",
+        ">> /var/log/django-crontab.log",
+    ),
+]

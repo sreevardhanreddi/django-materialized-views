@@ -10,5 +10,7 @@ echo "PostgreSQL started"
 
 python manage.py migrate
 
+python manage.py seed_mock_blogs_data
+
 # below line is to tell to continue the rest of the build flow
 exec "$@"
