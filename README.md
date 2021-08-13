@@ -181,14 +181,14 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY mv_blogs_with_categories_and_tags_combine
 
 In the below screenshots you can see the execution times, when querying the materialized view table vs performing the complex query.
 
-![without_materialized_views](/docs/complex_query.png)
+![without_materialized_views](https://raw.githubusercontent.com/sreevardhanreddi/django-materialized-views/master/docs/complex_query.png)
 
 ```
 Execution Time: 25.874 ms
 
 ```
 
-![with_materialized_views](/docs/materialized_views.png)
+![with_materialized_views](https://raw.githubusercontent.com/sreevardhanreddi/django-materialized-views/master/docs/materialized_views.png)
 
 ```
 Execution Time: 0.155 ms
