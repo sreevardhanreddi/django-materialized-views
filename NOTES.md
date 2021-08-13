@@ -212,3 +212,9 @@ create an empty migration file
 python manage.py makemigrations --name materialized_blogs pg_app --empty
 
 ```
+
+```python
+
+python manage.py shell_plus --print-sql
+
+```
